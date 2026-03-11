@@ -6,6 +6,7 @@ import TapGame from "@/games/TapGame";
 import MemoryGame from "@/games/MemoryGame";
 import SnakeGame from "@/games/SnakeGame";
 import ReactionGame from "@/games/ReactionGame";
+import MinesweeperGame from "@/games/MinesweeperGame";
 import BottomNav from "@/components/BottomNav";
 
 const gameComponents: Record<string, React.FC> = {
@@ -13,6 +14,7 @@ const gameComponents: Record<string, React.FC> = {
   "memory-match": MemoryGame,
   "snake-neon": SnakeGame,
   "reaction-test": ReactionGame,
+  "minesweeper": MinesweeperGame,
 };
 
 const GameFeed = () => {
