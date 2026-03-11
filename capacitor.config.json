@@ -1,0 +1,9 @@
+{
+  "appId": "app.lovable.20a00caf7ad047d38f447101ec41c85f",
+  "appName": "GameTok",
+  "webDir": "dist",
+  "server": {
+    "url": "https://20a00caf-7ad0-47d3-8f44-7101ec41c85f.lovableproject.com?forceHideBadge=true",
+    "cleartext": true
+  }
+}
