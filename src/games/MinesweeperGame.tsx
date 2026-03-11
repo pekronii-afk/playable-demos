@@ -88,6 +88,36 @@ const MinesweeperGame = () => {
     return true;
   };
 
+  const chordReveal = useCallback((r: number, c: number, b: CellState[][]) => {
+    const cell = b[r][c];
+    if (!cell.isRevealed || cell.adjacentMines === 0) return false;
+
+    let flagCount = 0;
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        const nr = r + dr, nc = c + dc;
+        if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && b[nr][nc].isFlagged) flagCount++;
+      }
+    }
+
+    if (flagCount !== cell.adjacentMines) return false;
+
+    let hitMine = false;
+    for (let dr = -1; dr <= 1; dr++) {
+      for (let dc = -1; dc <= 1; dc++) {
+        const nr = r + dr, nc = c + dc;
+        if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && !b[nr][nc].isRevealed && !b[nr][nc].isFlagged) {
+          if (b[nr][nc].isMine) {
+            hitMine = true;
+          } else {
+            revealCell(nr, nc, b);
+          }
+        }
+      }
+    }
+    return hitMine;
+  }, [revealCell]);
+
   const handleClick = (r: number, c: number) => {
     if (gameOver || won) return;
     const newBoard = board.map((row) => row.map((cell) => ({ ...cell })));
@@ -96,6 +126,20 @@ const MinesweeperGame = () => {
       if (newBoard[r][c].isRevealed) return;
       newBoard[r][c].isFlagged = !newBoard[r][c].isFlagged;
       setBoard(newBoard);
+      return;
+    }
+
+    // Chord: click on revealed number with correct flag count
+    if (newBoard[r][c].isRevealed && newBoard[r][c].adjacentMines > 0) {
+      const hitMine = chordReveal(r, c, newBoard);
+      if (hitMine) {
+        newBoard.forEach((row) => row.forEach((cell) => { if (cell.isMine) cell.isRevealed = true; }));
+        setBoard(newBoard);
+        setGameOver(true);
+        return;
+      }
+      setBoard(newBoard);
+      if (checkWin(newBoard)) setWon(true);
       return;
     }
 
