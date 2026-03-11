@@ -1,9 +1,5 @@
 {
   "appId": "app.lovable.gametok",
   "appName": "GameTok",
-  "webDir": "dist",
-  "server": {
-    "url": "https://20a00caf-7ad0-47d3-8f44-7101ec41c85f.lovableproject.com?forceHideBadge=true",
-    "cleartext": true
-  }
+  "webDir": "dist"
 }
