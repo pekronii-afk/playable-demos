@@ -84,7 +84,7 @@ const GameFeed = () => {
       </div>
 
       {/* Bottom Navigation */}
-      <BottomNav />
+      <BottomNav active="juegos" />
     </div>
   );
 };
