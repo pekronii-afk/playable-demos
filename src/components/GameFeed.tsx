@@ -14,6 +14,7 @@ const gameComponents: Record<string, React.FC> = {
   "memory-match": MemoryGame,
   "snake-neon": SnakeGame,
   "reaction-test": ReactionGame,
+  "minesweeper": MinesweeperGame,
 };
 
 const GameFeed = () => {

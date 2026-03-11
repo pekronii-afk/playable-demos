@@ -45,4 +45,13 @@ export const GAMES: GameInfo[] = [
     downloads: "150K",
     description: "¿Qué tan rápidos son tus reflejos? Espera la señal y toca lo más rápido posible. Compite contra ti mismo.",
   },
+  {
+    id: "minesweeper",
+    title: "BUSCAMINAS",
+    developer: "Logic Forge",
+    category: "Puzzle",
+    likes: 15200,
+    downloads: "520K",
+    description: "El clásico buscaminas reinventado. Descubre todas las casillas sin pisar una mina. Usa banderas para marcar peligros.",
+  },
 ];
