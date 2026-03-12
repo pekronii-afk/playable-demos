@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Search, TrendingUp, Zap, Brain, Target, Flame } from "lucide-react";
 import { GAMES } from "@/data/games";
 import BottomNav from "@/components/BottomNav";
@@ -32,11 +31,8 @@ const Explore = () => {
 
   return (
     <div className="relative w-full h-[100dvh] overflow-y-auto bg-background hide-scrollbar">
-      {/* Header */}
       <div className="px-5 pt-12 pb-4">
-        <h1 className="font-display text-2xl text-foreground text-glow mb-4">Explorar</h1>
-
-        {/* Search */}
+        <h1 className="font-display text-2xl text-foreground mb-4">Explorar</h1>
         <div className="relative">
           <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
           <input
@@ -48,7 +44,6 @@ const Explore = () => {
         </div>
       </div>
 
-      {/* Categories */}
       <div className="px-5 pb-4">
         <div className="flex gap-2 overflow-x-auto hide-scrollbar">
           {CATEGORIES.map((cat) => (
@@ -68,7 +63,6 @@ const Explore = () => {
         </div>
       </div>
 
-      {/* Trending */}
       {!search && selectedCategory === "todos" && (
         <div className="px-5 pb-6">
           <div className="flex items-center gap-2 mb-3">
@@ -76,39 +70,32 @@ const Explore = () => {
             <h2 className="font-display text-sm text-foreground uppercase tracking-wider">Trending</h2>
           </div>
           <div className="flex gap-3 overflow-x-auto hide-scrollbar">
-            {TRENDING.map((item, i) => (
-              <motion.div
+            {TRENDING.map((item) => (
+              <div
                 key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.1 }}
-                className="min-w-[160px] p-4 rounded-xl bg-gradient-to-br from-primary/10 via-secondary to-secondary border border-primary/20"
+                className="min-w-[160px] p-4 rounded-xl bg-secondary border border-border"
               >
                 <span className="font-display text-xs text-primary">{item.trend}</span>
                 <h3 className="font-display text-sm text-foreground mt-1">{item.title}</h3>
                 <span className="font-body text-xs text-muted-foreground">{item.plays} jugadas</span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       )}
 
-      {/* Games grid */}
       <div className="px-5 pb-24">
         <h2 className="font-display text-sm text-foreground uppercase tracking-wider mb-3">
           {selectedCategory === "todos" ? "Todos los juegos" : selectedCategory}
         </h2>
         <div className="grid grid-cols-2 gap-3">
-          {filteredGames.map((game, i) => (
-            <motion.button
+          {filteredGames.map((game) => (
+            <button
               key={game.id}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: i * 0.05 }}
               onClick={() => navigate("/")}
-              className="relative overflow-hidden rounded-xl border border-border bg-secondary/50 p-4 text-left hover:border-primary/50 transition-colors group"
+              className="rounded-xl border border-border bg-secondary/50 p-4 text-left hover:border-primary/50 transition-colors"
             >
-              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+              <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
                 <Zap size={18} className="text-primary" />
               </div>
               <h3 className="font-display text-xs text-foreground mb-1">{game.title}</h3>
@@ -117,7 +104,7 @@ const Explore = () => {
                 <span className="font-body text-[10px] text-primary uppercase tracking-wider">{game.category}</span>
                 <span className="font-body text-[10px] text-muted-foreground">{game.downloads}</span>
               </div>
-            </motion.button>
+            </button>
           ))}
         </div>
 
